@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leaderboard</title>
+<style>
+  /* CSS for leaderboard */
+  #leaderboard {
+    font-family: Arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    text-align:center;
+  }
+  #leaderboard th, #leaderboard td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+    height:42px;
+    background-color: #87CEEB;
+  }
+  #leaderboard th {
+    background-color: #FFA500;
+    text-align:left;
+  }
+  /* Adjust column widths */
+  #leaderboard th:first-child,
+  #leaderboard td:first-child {
+    width: 10vw;
+  }
+  #leaderboard th:last-child,
+  #leaderboard td:last-child {
+    width: 90vw;
+  }
+</style>
+</head>
+<body>
+
+<h2>Leaderboard</h2>
+
+<table id="leaderboard">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Grade</th>
+    </tr>
+  </thead>
+  <tbody id="leaderboard-body">
+    <!-- Leaderboard rows will be dynamically added here -->
+  </tbody>
+</table>
+
+<script>
+  // JavaScript to populate the leaderboard
+  let students = [
+   { name: "P. Spandhana", grade: "A"},
+    { name: "P. Mani", grade: "B"},
+    { name: "M. Sahasra", grade: "C"},
+    { name: "P. Sai Varshith", grade: "A"},
+    { name: "P. Thanvish", grade: "B"},
+    { name: "G. Varshini", grade: "C"},
+    { name: "G. Varun", grade: "A"},
+    { name: "M. Charvika", grade: "B"},
+    { name: "Jeswitha", grade: "C"},
+    { name: "M. Devansh", grade: "A"}
+  ];
+
+  const leaderboardBody = document.getElementById('leaderboard-body');
+
+  // Function to render leaderboard
+  function renderLeaderboard() {
+    leaderboardBody.innerHTML = ''; // Clear previous content
+    // Render leaderboard
+    students.forEach((student, index) => {
+      const row = document.createElement('tr');
+      row.innerHTML = `
+        <td>${student.name}</td>
+        <td contenteditable="true" onBlur="updateData(${index}, 'grade', this.innerText)">${student.grade}</td>
+      `;
+      leaderboardBody.appendChild(row);
+    });
+  }
+
+  // Render leaderboard on page load
+  renderLeaderboard();
+</script>
+
+</body>
+</html>
